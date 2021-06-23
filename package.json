@@ -1,0 +1,76 @@
+{
+  "name": "ts-koa-starter",
+  "version": "1.0.0",
+  "description": "一个简单的koa+typescript+typeorm的起手式",
+  "tags": [
+    "orm",
+    "typescript",
+    "koa"
+  ],
+  "scripts": {
+    "start": "nodemon",
+    "build": "rm -rf dist && tsc",
+    "pro": "npx pm2 start ecosystem.config.js --env production",
+    "restart": "pm2 restart ecosystem.config.js --env production",
+    "stop": "npx pm2 stop ecosystem.config.js",
+    "test": "cross-env TS_NODE_PROJECT='test/tsconfig.test.json' mocha test/**/**.test.ts --exit",
+    "cover": "nyc --reporter=html npm run test"
+  },
+  "mocha": {
+    "require": [
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ],
+    "ui": "bdd"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ioredis": "^4.27.6",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.1",
+    "koa-redis": "^4.0.1",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "mysql": "^2.18.1",
+    "redis": "^3.1.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.19",
+    "@types/chai-http": "^4.2.0",
+    "@types/ioredis": "^4.26.4",
+    "@types/jsonwebtoken": "^8.5.2",
+    "@types/koa": "^2.13.3",
+    "@types/koa-bodyparser": "^4.3.1",
+    "@types/koa-router": "^7.4.2",
+    "@types/koa-static": "^4.0.1",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^12.20.15",
+    "@types/redis": "^2.8.29",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "pm2": "^3.5.0",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.3.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "jsxBracketSameLine": false,
+    "proseWrap": "preserve",
+    "printWidth": 80
+  }
+}
