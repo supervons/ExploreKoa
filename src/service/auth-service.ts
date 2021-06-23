@@ -2,7 +2,7 @@
  * controller 实现类
  */
 import { getManager } from 'typeorm';
-import { UserInfo } from 'src/entity/UserInfo';
+import { UserInfo } from '../entity/UserInfo';
 import { default_redis } from '../redis/redisOperate';
 let redisTool_db0 = default_redis;
 export default class AuthService {
