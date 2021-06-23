@@ -39,7 +39,7 @@ The front-end project address: https://github.com/supervons/ExploreRN
 
 ### Finished
 
-- [] Project Init
+- [x] Project Init
 
 ### TODO-LIST
 
