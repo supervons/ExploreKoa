@@ -10,6 +10,20 @@ The front-end project address: https://github.com/supervons/ExploreRN
 4. Modify password and user information;
 5. Upload and modify the avatar;
 
+### Project Start - Develop
+
+```
+npm install
+npm run start
+```
+
+### Project pm2 - Deploy
+
+```
+npm run build
+npm run pro
+```
+
 ### PROJECT DIR INTRODUCE
 
 ```

@@ -10,6 +10,20 @@
 4. 修改密码、用户信息；
 5. 头像上传修改；
 
+### 项目启动-开发
+
+```
+npm install
+npm run start
+```
+
+### 项目 pm2 部署
+
+```
+npm run build
+npm run pro
+```
+
 ### 项目结构
 
 ```
