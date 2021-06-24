@@ -55,10 +55,10 @@ npm run pro
 
 - [x] Project Init
 - [x] Login and Register
+- [x] api add authentication - JWT
+- [x] update password and user information
 
 ### TODO-LIST
 
-- [ ] interface authentication
 - [ ] Redis-based list query acceleration
-- [ ] Modify password and user information
 - [ ] profile upload modification

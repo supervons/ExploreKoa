@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `tb_user_info`;
 
 CREATE TABLE `tb_user_info` (
   `id` varchar(32) NOT NULL,
-  `login_id` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `pass_word` varchar(255) NOT NULL,
   `user_age` int(11) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `tb_user_info` (
 LOCK TABLES `tb_user_info` WRITE;
 /*!40000 ALTER TABLE `tb_user_info` DISABLE KEYS */;
 
-INSERT INTO `tb_user_info` (`id`, `login_id`, `user_name`, `pass_word`, `user_age`, `user_sex`, `user_type`, `user_address`, `user_cellphone`, `create_time`, `update_time`)
+INSERT INTO `tb_user_info` (`id`, `user_id`, `user_name`, `pass_word`, `user_age`, `user_sex`, `user_type`, `user_address`, `user_cellphone`, `create_time`, `update_time`)
 VALUES
 	('master','supervons','冯一朔','098f6bcd4621d373cade4e832627b4f6',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 

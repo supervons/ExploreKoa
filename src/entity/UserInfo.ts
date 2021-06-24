@@ -8,8 +8,8 @@ export class UserInfo {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @Column({ name: 'login_id' })
-  loginId: string;
+  @Column({ name: 'user_id' })
+  userId: string;
 
   @Column({ select: false, name: 'pass_word' })
   password: string;
