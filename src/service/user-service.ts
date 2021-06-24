@@ -2,9 +2,31 @@
  * controller implementation class
  */
 import * as moment from 'moment';
-import { getManager } from 'typeorm';
+import { getManager, Like } from 'typeorm';
 import { UserInfo } from '../entity/UserInfo';
 export default class UserService {
+  /**
+   * get user list info.
+   * contains paging,Fuzzy search
+   * more typeorm usage you can go to https://typeorm.bootcss.com/find-options
+   */
+  getUsers = async ctx => {
+    const params = ctx.request.body;
+    const searchWord = params.searchWord;
+    const pageSize = params.pageSize;
+    const pageStart = pageSize * (params.pageNumber - 1);
+    const userRepository = getManager().getRepository(UserInfo);
+    const [result, resultCount] = await userRepository.findAndCount({
+      skip: pageStart,
+      take: pageStart + pageSize,
+      where: { userName: Like(`%${searchWord}%`) }
+    });
+    if (result) {
+      ctx.success({ count: resultCount, userList: result }, 'success!');
+    } else {
+      ctx.fail('query user failed！', -1);
+    }
+  };
   /**
    * get user info
    */
@@ -13,7 +35,7 @@ export default class UserService {
     const userRepository = getManager().getRepository(UserInfo);
     const result = await userRepository.findOne(id);
     if (result) {
-      ctx.success({ data: result }, 'success!');
+      ctx.success({ userInfo: result }, 'success!');
     } else {
       ctx.fail('query user failed！', -1);
     }

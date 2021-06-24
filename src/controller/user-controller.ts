@@ -3,6 +3,9 @@ import UserService from '../service/user-service';
 class UserController {
   private service: UserService = new UserService();
 
+  getUsers = async ctx => {
+    await this.service.getUsers(ctx);
+  };
   getUser = async ctx => {
     await this.service.getUser(ctx);
   };

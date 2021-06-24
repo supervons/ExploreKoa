@@ -11,6 +11,11 @@ export default [
     action: homeController.hello
   },
   {
+    path: '/users',
+    method: 'get',
+    action: userController.getUsers
+  },
+  {
     path: '/user/:id',
     method: 'get',
     action: userController.getUser
