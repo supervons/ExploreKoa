@@ -3,7 +3,7 @@
  */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'tb_user_info' })
 export class UserInfo {
   @PrimaryGeneratedColumn('uuid')
   id: number;
@@ -20,17 +20,14 @@ export class UserInfo {
   @Column({ name: 'user_sex' })
   userSex: string;
 
+  @Column({ name: 'user_type' })
+  userType: string;
+
   @Column({ name: 'user_address' })
   userAddress: string;
 
   @Column({ name: 'user_cellphone' })
   userCellphone: string;
-
-  @Column({ name: 'user_type', default: '1' })
-  userType: string;
-
-  @Column({ name: 'belongs_user' })
-  belongsUser: string;
 
   @Column({ select: false, name: 'create_time' })
   createTime: string;
