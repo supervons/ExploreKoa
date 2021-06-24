@@ -17,6 +17,9 @@ export class UserInfo {
   @Column({ name: 'user_name' })
   userName: string;
 
+  @Column({ name: 'user_age' })
+  userAge: number;
+
   @Column({ name: 'user_sex' })
   userSex: string;
 

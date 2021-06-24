@@ -54,11 +54,11 @@ npm run pro
 ### Finished
 
 - [x] Project Init
+- [x] Login and Register
 
 ### TODO-LIST
 
-- [ ] Login registration;
-- [ ] interface authentication;
-- [ ] Redis-based list query acceleration;
-- [ ] Modify password and user information;
-- [ ] profile upload modification;
+- [ ] interface authentication
+- [ ] Redis-based list query acceleration
+- [ ] Modify password and user information
+- [ ] profile upload modification
