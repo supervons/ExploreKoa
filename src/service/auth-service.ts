@@ -26,7 +26,7 @@ export default class AuthService {
       };
       ctx.success(result, 'success');
     } else {
-      ctx.fail('用户名或密码错误', -1);
+      ctx.fail('Incorrect user name or password！', -1);
     }
   };
 }

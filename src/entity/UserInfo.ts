@@ -5,7 +5,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserInfo {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ name: 'login_id' })
@@ -26,7 +26,7 @@ export class UserInfo {
   @Column({ name: 'user_cellphone' })
   userCellphone: string;
 
-  @Column({ name: 'user_type' })
+  @Column({ name: 'user_type', default: '1' })
   userType: string;
 
   @Column({ name: 'belongs_user' })
