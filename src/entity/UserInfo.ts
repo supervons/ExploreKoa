@@ -1,5 +1,5 @@
 /**
- * 实体类，映射数据库
+ * UserInfo Entity
  */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -32,9 +32,9 @@ export class UserInfo {
   @Column({ name: 'belongs_user' })
   belongsUser: string;
 
-  @Column({ name: 'create_time' })
+  @Column({ select: false, name: 'create_time' })
   createTime: string;
 
-  @Column({ name: 'update_time' })
+  @Column({ select: false, name: 'update_time' })
   updateTime: string;
 }

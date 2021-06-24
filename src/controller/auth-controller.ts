@@ -4,7 +4,7 @@ class AuthController {
   private service: AuthService = new AuthService();
 
   auth = async ctx => {
-    ctx.body = await this.service.auth();
+    await this.service.auth(ctx);
   };
 }
 

@@ -7,6 +7,7 @@ import * as path from 'path';
 import 'reflect-metadata';
 import UnprotectRoutes from './router/unprotect-routes';
 import ProtectRoutes from './router/protect-routes';
+import routerResponse from './middle/response';
 import { PORT } from './config';
 import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
@@ -14,15 +15,16 @@ createConnection();
 const app = new Koa();
 const router = new Router();
 const UnprotectRouter = new Router();
-//未受保护路由
+//Unprotected routes
 UnprotectRoutes.forEach(route =>
   UnprotectRouter[route.method](route.path, route.action)
 );
-//需JWT-TOKEN路由
+// needs JWT-TOKEN routes
 ProtectRoutes.forEach(route => router[route.method](route.path, route.action));
 
 app.use(staticFiles(path.join(__dirname, '../public')));
 app.use(bodyParser());
+app.use(routerResponse());
 app.use(UnprotectRouter.routes());
 app.use(UnprotectRouter.allowedMethods());
 app.use(jwt({ secret: JWT_SECRET }));
