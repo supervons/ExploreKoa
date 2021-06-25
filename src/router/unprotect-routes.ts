@@ -5,7 +5,7 @@ import authController from '../controller/auth-controller';
 
 export default [
   {
-    path: '/token',
+    path: '/api/v1/token',
     method: 'post',
     action: authController.auth
   }

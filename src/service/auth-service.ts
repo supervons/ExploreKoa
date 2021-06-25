@@ -22,7 +22,7 @@ export default class AuthService {
     if (users) {
       const result = {
         userInfo: users,
-        token: JWT.sign({ id: userId }, JWT_SECRET, { expiresIn: 60 * 60 })
+        token: JWT.sign({ id: userId }, JWT_SECRET, { expiresIn: 24 * 60 * 60 })
       };
       ctx.success(result, 'success');
     } else {

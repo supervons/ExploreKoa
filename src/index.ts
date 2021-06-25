@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
-import * as bodyParser from 'koa-bodyparser';
+import * as koaBody from 'koa-body';
 import * as jwt from 'koa-jwt';
 import * as staticFiles from 'koa-static';
 import * as path from 'path';
@@ -11,6 +11,7 @@ import routerResponse from './middle/response';
 import { PORT } from './config';
 import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
+import { FILE_UPLOAD_PATH } from './config';
 createConnection();
 const app = new Koa();
 const router = new Router();
@@ -23,7 +24,16 @@ UnprotectRoutes.forEach(route =>
 ProtectRoutes.forEach(route => router[route.method](route.path, route.action));
 
 app.use(staticFiles(path.join(__dirname, '../public')));
-app.use(bodyParser());
+app.use(
+  koaBody({
+    encoding: 'gzip',
+    multipart: true,
+    formidable: {
+      keepExtensions: true,
+      uploadDir: path.join(FILE_UPLOAD_PATH)
+    }
+  })
+);
 app.use(routerResponse());
 app.use(UnprotectRouter.routes());
 app.use(UnprotectRouter.allowedMethods());

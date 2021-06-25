@@ -1,38 +1,43 @@
 /**
  * 受保护路由，需携带token访问
  */
-import homeController from '../controller/home-controller';
+import commonController from '../controller/common-controller';
 import userController from '../controller/user-controller';
 
 export default [
   {
     path: '/',
     method: 'get',
-    action: homeController.hello
+    action: commonController.hello
   },
   {
-    path: '/users',
+    path: '/api/v1/users',
     method: 'get',
     action: userController.getUsers
   },
   {
-    path: '/user/:id',
+    path: '/api/v1/user/:id',
     method: 'get',
     action: userController.getUser
   },
   {
-    path: '/user',
+    path: '/api/v1/user',
     method: 'post',
     action: userController.createUser
   },
   {
-    path: '/user/:id',
+    path: '/api/v1/user/:id',
     method: 'delete',
     action: userController.deleteUser
   },
   {
-    path: '/user/:id',
+    path: '/api/v1/user/:id',
     method: 'put',
     action: userController.updateUser
+  },
+  {
+    path: '/api/v1/upload',
+    method: 'post',
+    action: commonController.upload
   }
 ];
