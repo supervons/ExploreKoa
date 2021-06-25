@@ -55,3 +55,16 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+DROP TABLE IF EXISTS `tb_file_info`;
+
+CREATE TABLE `tb_file_info` (
+  `id` varchar(32) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_size` varchar(32) NOT NULL,
+  `file_type` varchar(32) NOT NULL,
+  `file_path` varchar(255) DEFAULT NULL,
+  `file_access_path` varchar(255) DEFAULT NULL,
+  `create_time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

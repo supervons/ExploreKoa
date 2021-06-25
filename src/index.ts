@@ -23,14 +23,17 @@ UnprotectRoutes.forEach(route =>
 // needs JWT-TOKEN routes
 ProtectRoutes.forEach(route => router[route.method](route.path, route.action));
 
-app.use(staticFiles(path.join(__dirname, '../public')));
+app.use(staticFiles(path.join(__dirname, '../public/upload/')));
 app.use(
   koaBody({
     encoding: 'gzip',
     multipart: true,
     formidable: {
       keepExtensions: true,
-      uploadDir: path.join(FILE_UPLOAD_PATH)
+      uploadDir: path.join(FILE_UPLOAD_PATH),
+      onFileBegin: (name, file) => {
+        file.path = FILE_UPLOAD_PATH + file.name;
+      }
     }
   })
 );
