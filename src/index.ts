@@ -12,6 +12,7 @@ import { PORT } from './config';
 import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
 import { FILE_UPLOAD_PATH } from './config';
+import moment = require('moment');
 createConnection();
 const app = new Koa();
 const router = new Router();
@@ -35,7 +36,11 @@ app.use(
       keepExtensions: true,
       uploadDir: path.join(FILE_UPLOAD_PATH),
       onFileBegin: (name, file) => {
-        file.path = FILE_UPLOAD_PATH + file.name;
+        // The mapping file entity.
+        file.filePath = FILE_UPLOAD_PATH + file.name;
+        file.fileName = file.name;
+        file.fileType = file.type;
+        file.createTime = moment().format('YYYY-MM-DD HH:mm');
       }
     }
   })

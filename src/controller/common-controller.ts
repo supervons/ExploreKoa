@@ -8,7 +8,7 @@ class HomeController {
   };
 
   upload = async ctx => {
-    ctx.body = await this.service.upload(ctx);
+    await this.service.upload(ctx);
   };
 }
 
