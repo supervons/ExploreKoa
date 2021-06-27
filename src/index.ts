@@ -26,7 +26,6 @@ ProtectRoutes.forEach(route => router[route.method](route.path, route.action));
 app.use(staticFiles(path.join(__dirname, '../public/upload/')));
 app.use(
   koaBody({
-    encoding: 'gzip',
     multipart: true,
     formidable: {
       keepExtensions: true,
