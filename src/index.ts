@@ -24,6 +24,10 @@ UnprotectRoutes.forEach(route =>
 ProtectRoutes.forEach(route => router[route.method](route.path, route.action));
 
 app.use(staticFiles(path.join(__dirname, '../public/upload/')));
+app.use(routerResponse());
+app.use(UnprotectRouter.routes());
+app.use(UnprotectRouter.allowedMethods());
+app.use(jwt({ secret: JWT_SECRET }));
 app.use(
   koaBody({
     multipart: true,
@@ -36,10 +40,6 @@ app.use(
     }
   })
 );
-app.use(routerResponse());
-app.use(UnprotectRouter.routes());
-app.use(UnprotectRouter.allowedMethods());
-app.use(jwt({ secret: JWT_SECRET }));
 app.use(router.routes());
 app.use(router.allowedMethods());
 // add a listen.
