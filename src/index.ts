@@ -37,7 +37,8 @@ app.use(
       uploadDir: path.join(FILE_UPLOAD_PATH),
       onFileBegin: (name, file) => {
         // The mapping file entity.
-        file.filePath = FILE_UPLOAD_PATH + file.name;
+        file.path = FILE_UPLOAD_PATH + file.name;
+        file.filePath = file.path;
         file.fileName = file.name;
         file.fileType = file.type;
         file.createTime = moment().format('YYYY-MM-DD HH:mm');

@@ -5,7 +5,8 @@ export default class HomeService {
   };
   upload = async ctx => {
     const files = ctx.request.files;
-    const fileIds = await Upload.upload(files);
+    const origin = ctx.request.origin;
+    const fileIds = await Upload.upload(files, origin);
     if (fileIds) {
       ctx.success({ fileInfo: fileIds }, 'upload file success!');
     } else {
