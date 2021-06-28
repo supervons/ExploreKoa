@@ -12,17 +12,17 @@ export default class AuthService {
    */
   auth = async ctx => {
     const userInfo = ctx.request.body;
-    const userId = userInfo.userId;
+    const uId = userInfo.uId;
     const password = userInfo.password;
     const userRepository = getManager().getRepository(UserInfo);
     const users = await userRepository.findOne({
-      userId: userId,
+      uId: uId,
       password: password
     });
     if (users) {
       const result = {
         userInfo: users,
-        token: JWT.sign({ id: userId }, JWT_SECRET, { expiresIn: 24 * 60 * 60 })
+        token: JWT.sign({ id: uId }, JWT_SECRET, { expiresIn: 24 * 60 * 60 })
       };
       ctx.success(result, 'success');
     } else {

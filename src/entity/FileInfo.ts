@@ -1,13 +1,10 @@
 /**
  * FileInfo Entity
  */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Entity, Column } from 'typeorm';
+import { BaseEntity } from './BaseEntity';
 @Entity({ name: 'tb_file_info' })
-export class FileInfo {
-  @PrimaryGeneratedColumn('uuid')
-  id: number;
-
+export class FileInfo extends BaseEntity {
   @Column({ name: 'file_name' })
   fileName: string;
 
@@ -22,7 +19,4 @@ export class FileInfo {
 
   @Column({ name: 'file_access_path' })
   fileAccessPath: string;
-
-  @Column({ name: 'create_time' })
-  createTime: string;
 }

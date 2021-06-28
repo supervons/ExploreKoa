@@ -30,11 +30,11 @@ FileRoutes.forEach(route => fileRouter[route.method](route.path, route.action));
 // open public file dir
 app.use(staticFiles(path.join(__dirname, '../public/upload/')));
 app.use(routerResponse());
+app.use(koaBody());
 app.use(UnprotectRouter.routes());
 app.use(UnprotectRouter.allowedMethods());
 // JWT middle ware
 app.use(jwt({ secret: JWT_SECRET }));
-app.use(koaBody());
 app.use(router.routes());
 app.use(router.allowedMethods());
 // this koaBody allow file upload.

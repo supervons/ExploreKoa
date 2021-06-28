@@ -23,26 +23,25 @@
 DROP TABLE IF EXISTS `tb_user_info`;
 
 CREATE TABLE `tb_user_info` (
-  `id` varchar(32) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
+  `id` varchar(32) PRIMARY KEY,
+  `uid` varchar(64),
+  `user_name` varchar(255),
   `pass_word` varchar(255) NOT NULL,
-  `user_age` int(11) DEFAULT NULL,
-  `user_sex` varchar(255) DEFAULT NULL,
-  `user_type` varchar(255) DEFAULT NULL,
-  `user_address` varchar(255) DEFAULT NULL,
-  `user_cellphone` varchar(255) DEFAULT NULL,
-  `create_time` varchar(32) DEFAULT NULL,
-  `update_time` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `user_age` int(11),
+  `user_sex` varchar(16),
+  `user_type` varchar(255) NOT NULL,
+  `user_address` varchar(255),
+  `user_cellphone` varchar(32),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `tb_user_info` WRITE;
 /*!40000 ALTER TABLE `tb_user_info` DISABLE KEYS */;
 
-INSERT INTO `tb_user_info` (`id`, `user_id`, `user_name`, `pass_word`, `user_age`, `user_sex`, `user_type`, `user_address`, `user_cellphone`, `create_time`, `update_time`)
+INSERT INTO `tb_user_info` (`id`, `uid`, `user_name`, `pass_word`, `user_age`, `user_sex`, `user_type`, `user_address`, `user_cellphone`, `create_time`, `update_time`)
 VALUES
-	('master','supervons','冯一朔','098f6bcd4621d373cade4e832627b4f6',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+	('master','supervons','冯一朔','098f6bcd4621d373cade4e832627b4f6',NULL,NULL,1,NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `tb_user_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -59,12 +58,46 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_file_info`;
 
 CREATE TABLE `tb_file_info` (
-  `id` varchar(32) NOT NULL,
-  `file_name` varchar(255) NOT NULL,
+  `id` varchar(32) PRIMARY KEY,
+  `file_name` varchar(255),
   `file_size` varchar(32) NOT NULL,
-  `file_type` varchar(32) NOT NULL,
-  `file_path` varchar(255) DEFAULT NULL,
-  `file_access_path` varchar(255) DEFAULT NULL,
-  `create_time` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `file_type` varchar(32),
+  `file_path` varchar(255) NOT NULL,
+  `file_access_path` varchar(255),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tb_avatar_info`;
+
+CREATE TABLE `tb_avatar_info` (
+  `id` varchar(32) PRIMARY KEY,
+  `user_id` varchar(32) NOT NULL,
+  `file_id` varchar(32) NOT NULL,
+  `status` varchar(4),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tb_profile_info`;
+
+CREATE TABLE `tb_profile_info` (
+  `id` varchar(32) PRIMARY KEY,
+  `user_id` varchar(32) NOT NULL,
+  `avatar_id` varchar(32),
+  `theme` varchar(16),
+  `motto` varchar(255),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tb_news_info`;
+
+CREATE TABLE `tb_news_info` (
+  `id` varchar(32) PRIMARY KEY,
+  `news_title` varchar(64) NOT NULL,
+  `news_content` blob,
+  `create_user_id` varchar(32),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

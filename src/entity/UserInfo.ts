@@ -1,21 +1,19 @@
 /**
  * UserInfo Entity
  */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import { BaseEntity } from './BaseEntity';
 
 @Entity({ name: 'tb_user_info' })
-export class UserInfo {
-  @PrimaryGeneratedColumn('uuid')
-  id: number;
-
-  @Column({ name: 'user_id' })
-  userId: string;
-
-  @Column({ select: false, name: 'pass_word' })
-  password: string;
+export class UserInfo extends BaseEntity {
+  @Column({ name: 'uid' })
+  uId: string;
 
   @Column({ name: 'user_name' })
   userName: string;
+
+  @Column({ select: false, name: 'pass_word' })
+  password: string;
 
   @Column({ name: 'user_age' })
   userAge: number;
@@ -31,10 +29,4 @@ export class UserInfo {
 
   @Column({ name: 'user_cellphone' })
   userCellphone: string;
-
-  @Column({ select: false, name: 'create_time' })
-  createTime: string;
-
-  @Column({ select: false, name: 'update_time' })
-  updateTime: string;
 }
