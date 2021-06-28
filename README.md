@@ -45,6 +45,10 @@ npm run pro
 └── tsconfig.json         //ts配置文件
 ```
 
+### 数据库表结构
+
+<img src="./public/explore.png" alt="表结构" align="center"/>
+
 ### 数据库文件位置
 
 ```

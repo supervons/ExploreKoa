@@ -45,6 +45,10 @@ npm run pro
 └── tsconfig.json         //ts config
 ```
 
+### Table Structure
+
+<img src="./public/explore.png" alt="Structure" align="center"/>
+
 ### database file path
 
 ```
