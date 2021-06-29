@@ -64,5 +64,6 @@ npm run pro
 
 ### TODO-LIST
 
+- [ ] log4j log middleware
 - [ ] Redis-based list query acceleration
 - [ ] profile upload modification
