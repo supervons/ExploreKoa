@@ -1,7 +1,8 @@
 import moment = require('moment');
+import { getManager, getConnection, createQueryBuilder } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
-import { getManager } from 'typeorm';
 import { AvatarInfo } from '../entity/AvatarInfo';
+import { FileInfo } from '../entity/FileInfo';
 import * as Upload from '../utils/file';
 export default class HomeService {
   hello = () => {
@@ -19,13 +20,37 @@ export default class HomeService {
     }
   };
 
-  getProfile = async ctx => {};
+  /**
+   * Use leftJoinAndSelect query profile related tables.
+   * The getRawMany() returns original data.
+   * You should use select() Choose the data you need.
+   */
+  getProfile = async ctx => {
+    ctx.success(
+      {
+        profile: await createQueryBuilder('ProfileInfo')
+          .leftJoinAndSelect(
+            AvatarInfo,
+            'avatar',
+            'avatar.id = ProfileInfo.avatar_id'
+          )
+          .leftJoinAndSelect(FileInfo, 'file', 'file.id = avatar.file_id')
+          .select(
+            `ProfileInfo.id, ProfileInfo.user_id,ProfileInfo.theme,ProfileInfo.motto, file.file_access_path`
+          )
+          .getRawMany()
+      },
+      'upload profile success!'
+    );
+  };
 
   profile = async ctx => {
+    // get params
     const files = ctx.request.files;
     const { userId, theme, motto } = ctx.request.body;
     const origin = ctx.request.origin;
     const fileIds = await Upload.upload(files, origin);
+    // add avatar
     const avatarRepository = getManager().getRepository(AvatarInfo);
     const avatar = {
       userId: userId,
@@ -34,6 +59,7 @@ export default class HomeService {
       createTime: moment().format('YYYY-MM-DD HH:mm')
     };
     const { identifiers } = await avatarRepository.insert(avatar);
+    // add profile
     const profileRepository = getManager().getRepository(ProfileInfo);
     const profile = {
       userId: userId,
