@@ -13,5 +13,20 @@ export default [
     path: '/api/v1/upload',
     method: 'post',
     action: commonController.upload
+  },
+  {
+    path: '/api/v1/profile',
+    method: 'get',
+    action: commonController.getProfile
+  },
+  {
+    path: '/api/v1/profile',
+    method: 'post',
+    action: commonController.profile
+  },
+  {
+    path: '/api/v1/profile',
+    method: 'put',
+    action: commonController.updateProfile
   }
 ];

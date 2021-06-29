@@ -2,7 +2,7 @@ import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ name: 'create_time' })
   createTime: string;

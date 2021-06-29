@@ -10,6 +10,18 @@ class HomeController {
   upload = async ctx => {
     await this.service.upload(ctx);
   };
+
+  getProfile = async ctx => {
+    await this.service.getProfile(ctx);
+  };
+
+  profile = async ctx => {
+    await this.service.profile(ctx);
+  };
+
+  updateProfile = async ctx => {
+    await this.service.upload(ctx);
+  };
 }
 
 export default new HomeController();

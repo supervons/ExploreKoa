@@ -10,8 +10,8 @@ export class AvatarInfo extends BaseEntity {
   userId: string;
 
   @Column({ name: 'file_id' })
-  fileId: number;
+  fileId: string;
 
   @Column({ name: 'status' })
-  status: string;
+  status: number;
 }
