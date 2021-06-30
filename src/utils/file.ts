@@ -1,8 +1,9 @@
 import moment = require('moment');
-import { FileInfo } from '../entity/FileInfo';
 import { getManager } from 'typeorm';
+import { FileInfo } from '../entity/FileInfo';
+import { AvatarInfo } from '../entity/AvatarInfo';
 /**
- * @description file upload tool, Support for multiple file uploads.
+ * @description File upload tool, Support for multiple file uploads.
  * @param files, obejct or file list.
  * @returns files identifiers.
  */
@@ -26,5 +27,28 @@ export async function upload(files, origin) {
   }
   const fileRepository = getManager().getRepository(FileInfo);
   const { identifiers } = await fileRepository.insert(fileList);
+  return identifiers;
+}
+
+/**
+ * @description Avatar upload api.
+ * @param ctx request params.
+ * @returns A successful insert returns the primary key
+ */
+export async function uploadAvatar(ctx) {
+  // get params
+  const files = ctx.request.files;
+  const { userId } = ctx.request.body;
+  const origin = ctx.request.origin;
+  const fileIds = await this.upload(files, origin);
+  // add avatar
+  const avatarRepository = getManager().getRepository(AvatarInfo);
+  const avatar = {
+    userId: userId,
+    fileId: fileIds[0].id,
+    status: 1,
+    createTime: moment().format('YYYY-MM-DD HH:mm')
+  };
+  const { identifiers } = await avatarRepository.insert(avatar);
   return identifiers;
 }

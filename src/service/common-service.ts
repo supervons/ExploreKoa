@@ -1,14 +1,21 @@
 import moment = require('moment');
-import { getManager, getConnection, createQueryBuilder } from 'typeorm';
+import { getManager, createQueryBuilder } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
 import { AvatarInfo } from '../entity/AvatarInfo';
 import { FileInfo } from '../entity/FileInfo';
 import * as Upload from '../utils/file';
-export default class HomeService {
+/**
+ * CommonService, includes user profile, file upload.
+ */
+export default class CommonService {
   hello = () => {
     return new Promise(resolve => resolve('hello world'));
   };
 
+  /**
+   * General file upload
+   * @returns file ids
+   */
   upload = async ctx => {
     const files = ctx.request.files;
     const origin = ctx.request.origin;
@@ -44,22 +51,14 @@ export default class HomeService {
     );
   };
 
-  profile = async ctx => {
-    // get params
-    const files = ctx.request.files;
-    const { userId, theme, motto } = ctx.request.body;
-    const origin = ctx.request.origin;
-    const fileIds = await Upload.upload(files, origin);
-    // add avatar
-    const avatarRepository = getManager().getRepository(AvatarInfo);
-    const avatar = {
-      userId: userId,
-      fileId: fileIds[0].id,
-      status: 1,
-      createTime: moment().format('YYYY-MM-DD HH:mm')
-    };
-    const { identifiers } = await avatarRepository.insert(avatar);
-    // add profile
+  /**
+   * Add profile.
+   */
+  saveAndFlushProfile = async ctx => {
+    // Get params
+    const { id, userId, theme, motto } = ctx.request.body;
+    const identifiers = await Upload.uploadAvatar(ctx);
+    // Add profile
     const profileRepository = getManager().getRepository(ProfileInfo);
     const profile = {
       userId: userId,
@@ -68,11 +67,25 @@ export default class HomeService {
       motto: motto,
       createTime: moment().format('YYYY-MM-DD HH:mm')
     };
-    const result = await profileRepository.insert(profile);
-    if (result.identifiers) {
+    let result = null;
+    // If params have id, denote update profile.
+    result = await profileRepository.save({ ...profile, id });
+    console.log(JSON.stringify(result));
+    // Add or update success
+    if (result.id) {
       ctx.success(null, 'upload profile success!');
     } else {
       ctx.fail('upload profile failed！', -1);
     }
+  };
+
+  /**
+   * Delete user profile by id
+   */
+  deleteProfile = async ctx => {
+    const id = ctx.params.id;
+    const profileRepository = getManager().getRepository(ProfileInfo);
+    await profileRepository.delete(id);
+    ctx.success({}, 'delete success!');
   };
 }

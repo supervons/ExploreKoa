@@ -28,5 +28,10 @@ export default [
     path: '/api/v1/profile',
     method: 'put',
     action: commonController.updateProfile
+  },
+  {
+    path: '/api/v1/profile/:id',
+    method: 'delete',
+    action: commonController.deleteProfile
   }
 ];

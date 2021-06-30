@@ -16,11 +16,15 @@ class HomeController {
   };
 
   profile = async ctx => {
-    await this.service.profile(ctx);
+    await this.service.saveAndFlushProfile(ctx);
   };
 
   updateProfile = async ctx => {
-    await this.service.upload(ctx);
+    await this.service.saveAndFlushProfile(ctx);
+  };
+
+  deleteProfile = async ctx => {
+    await this.service.deleteProfile(ctx);
   };
 }
 
