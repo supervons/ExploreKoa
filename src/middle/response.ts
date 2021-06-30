@@ -22,7 +22,6 @@ function routerResponse(
         code: code || option.failCode,
         msg: msg || option.successMsg
       };
-      console.log(ctx.body);
     };
     await next();
   };

@@ -70,7 +70,6 @@ export default class CommonService {
     let result = null;
     // If params have id, denote update profile.
     result = await profileRepository.save({ ...profile, id });
-    console.log(JSON.stringify(result));
     // Add or update success
     if (result.id) {
       ctx.success(null, 'upload profile success!');
