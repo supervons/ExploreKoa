@@ -1,9 +1,10 @@
-/**
- * FileInfo Entity
- */
 import { Entity, Column } from 'typeorm';
 import { BaseEntity } from './BaseEntity';
-
+/**
+ * @author supervons
+ * ProfileInfo Entity.
+ * Save user profile info, such as theme/motto and so on.
+ */
 @Entity({ name: 'tb_profile_info' })
 export class ProfileInfo extends BaseEntity {
   @Column({ name: 'user_id' })
