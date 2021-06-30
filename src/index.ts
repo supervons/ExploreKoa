@@ -9,10 +9,9 @@ import UnprotectRoutes from './router/unprotect-routes';
 import UserRoutes from './router/protect/user-routes';
 import FileRoutes from './router/protect/common-routes';
 import routerResponse from './middle/response';
-import { PORT } from './config';
+import { PORT, FILE_UPLOAD_PATH } from './config';
 import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
-import { FILE_UPLOAD_PATH } from './config';
 import moment = require('moment');
 createConnection();
 const app = new Koa();
@@ -59,5 +58,5 @@ app.use(fileRouter.routes());
 app.use(fileRouter.allowedMethods());
 // add a listen.
 module.exports = app.listen(PORT, () => {
-  console.log('server is running at http://localhost:3000');
+  console.log('server is running at http://localhost:' + PORT);
 });
