@@ -5,7 +5,12 @@ import userController from '../../controller/user-controller';
 
 export default [
   {
-    path: '/api/v1/users',
+    path: '/api/v1/users/:pageNumber/:pageSize/:searchWord',
+    method: 'get',
+    action: userController.getUsers
+  },
+  {
+    path: '/api/v1/users/:pageNumber/:pageSize',
     method: 'get',
     action: userController.getUsers
   },

@@ -6,20 +6,18 @@ import { getManager, Like } from 'typeorm';
 import { UserInfo } from '../entity/UserInfo';
 export default class UserService {
   /**
-   * get user list info.
-   * contains paging,Fuzzy search
-   * more typeorm usage you can go to https://typeorm.bootcss.com/find-options
+   * Get user list info.
+   * Contains paging,fuzzy search
+   * More typeorm usage you can go to https://typeorm.bootcss.com/find-options
    */
   getUsers = async ctx => {
-    const params = ctx.request.body;
-    const searchWord = params.searchWord;
-    const pageSize = params.pageSize;
-    const pageStart = pageSize * (params.pageNumber - 1);
+    const { pageNumber, pageSize, searchWord } = ctx.params;
+    const pageStart = pageSize * (pageNumber - 1);
     const userRepository = getManager().getRepository(UserInfo);
     const [result, resultCount] = await userRepository.findAndCount({
       skip: pageStart,
       take: pageStart + pageSize,
-      where: { userName: Like(`%${searchWord}%`) }
+      where: searchWord ? { userName: Like(`%${searchWord}%`) } : null
     });
     if (result) {
       ctx.success({ count: resultCount, userList: result }, 'success!');
