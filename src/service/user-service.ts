@@ -3,6 +3,7 @@
  */
 import * as moment from 'moment';
 import { getManager, Like } from 'typeorm';
+import * as Koa from 'koa';
 import { UserInfo } from '../entity/UserInfo';
 export default class UserService {
   /**
@@ -10,7 +11,7 @@ export default class UserService {
    * Contains paging,fuzzy search
    * More typeorm usage you can go to https://typeorm.bootcss.com/find-options
    */
-  getUsers = async ctx => {
+  getUsers = async (ctx: Koa.Context) => {
     const { pageNumber, pageSize, searchWord } = ctx.params;
     const pageStart = pageSize * (pageNumber - 1);
     const userRepository = getManager().getRepository(UserInfo);
@@ -28,7 +29,7 @@ export default class UserService {
   /**
    * get user info
    */
-  getUser = async ctx => {
+  getUser = async (ctx: Koa.Context) => {
     const id = ctx.params.id;
     const userRepository = getManager().getRepository(UserInfo);
     const result = await userRepository.findOne(id);
@@ -41,7 +42,7 @@ export default class UserService {
   /**
    * Create new user
    */
-  createUser = async ctx => {
+  createUser = async (ctx: Koa.Context) => {
     const userInfo = ctx.request.body;
     const userRepository = getManager().getRepository(UserInfo);
     const result = await userRepository.insert({
@@ -57,7 +58,7 @@ export default class UserService {
   /**
    * Delete user by id
    */
-  deleteUser = async ctx => {
+  deleteUser = async (ctx: Koa.Context) => {
     const id = ctx.params.id;
     const userRepository = getManager().getRepository(UserInfo);
     const result = await userRepository.delete(id);
@@ -70,7 +71,7 @@ export default class UserService {
   /**
    * update user by id
    */
-  updateUser = async ctx => {
+  updateUser = async (ctx: Koa.Context) => {
     const id = ctx.params.id;
     const userInfo = ctx.request.body;
     const userRepository = getManager().getRepository(UserInfo);

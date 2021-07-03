@@ -1,4 +1,5 @@
 import moment = require('moment');
+import * as Koa from 'koa';
 import { getManager, createQueryBuilder } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
 import { AvatarInfo } from '../entity/AvatarInfo';
@@ -16,7 +17,7 @@ export default class CommonService {
    * General file upload
    * @returns file ids
    */
-  upload = async ctx => {
+  upload = async (ctx: Koa.Context) => {
     const files = ctx.request.files;
     const origin = ctx.request.origin;
     const fileIds = await Upload.upload(files, origin);
@@ -32,7 +33,7 @@ export default class CommonService {
    * The getRawMany() returns original data.
    * You should use select() Choose the data you need.
    */
-  getProfile = async ctx => {
+  getProfile = async (ctx: Koa.Context) => {
     ctx.success(
       {
         profile: await createQueryBuilder('ProfileInfo')
@@ -54,7 +55,7 @@ export default class CommonService {
   /**
    * Add profile.
    */
-  saveAndFlushProfile = async ctx => {
+  saveAndFlushProfile = async (ctx: Koa.Context) => {
     // Get params
     const { id, userId, theme, motto } = ctx.request.body;
     const identifiers = await Upload.uploadAvatar(ctx);
@@ -81,7 +82,7 @@ export default class CommonService {
   /**
    * Delete user profile by id
    */
-  deleteProfile = async ctx => {
+  deleteProfile = async (ctx: Koa.Context) => {
     const id = ctx.params.id;
     const profileRepository = getManager().getRepository(ProfileInfo);
     await profileRepository.delete(id);

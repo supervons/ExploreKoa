@@ -1,16 +1,14 @@
-/**
- * controller implementation class
- */
 import * as JWT from 'jsonwebtoken';
+import * as Koa from 'koa';
 import { getManager } from 'typeorm';
 import { UserInfo } from '../entity/UserInfo';
 import { JWT_SECRET } from '../constants';
 export default class AuthService {
   /**
    * Search the database based on the user name and password
-   * return the user information and JWT Token token if matched
+   * Return the user information and JWT Token token if matched
    */
-  auth = async ctx => {
+  auth = async (ctx: Koa.Context) => {
     const userInfo = ctx.request.body;
     const uId = userInfo.uId;
     const password = userInfo.password;

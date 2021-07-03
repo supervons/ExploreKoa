@@ -1,4 +1,5 @@
 import moment = require('moment');
+import * as Koa from 'koa';
 import { getManager } from 'typeorm';
 import { FileInfo } from '../entity/FileInfo';
 import { AvatarInfo } from '../entity/AvatarInfo';
@@ -35,7 +36,7 @@ export async function upload(files, origin) {
  * @param ctx request params.
  * @returns A successful insert returns the primary key
  */
-export async function uploadAvatar(ctx) {
+export async function uploadAvatar(ctx: Koa.Context) {
   // get params
   const files = ctx.request.files;
   const { userId } = ctx.request.body;
