@@ -33,5 +33,10 @@ export default [
     path: '/api/v1/user/:id',
     method: 'put',
     action: userController.updateUser
+  },
+  {
+    path: '/api/v1/user/password/:id',
+    method: 'put',
+    action: userController.updatePassword
   }
 ];

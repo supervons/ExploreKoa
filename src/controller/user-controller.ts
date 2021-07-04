@@ -22,6 +22,9 @@ class UserController {
   updateUser = async (ctx: Koa.Context) => {
     await this.service.updateUser(ctx);
   };
+  updatePassword = async (ctx: Koa.Context) => {
+    await this.service.updatePassword(ctx);
+  };
 }
 
 export default new UserController();

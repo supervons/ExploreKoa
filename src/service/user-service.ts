@@ -1,9 +1,9 @@
 /**
  * controller implementation class
  */
+import * as Koa from 'koa';
 import * as moment from 'moment';
 import { getManager, Like } from 'typeorm';
-import * as Koa from 'koa';
 import { UserInfo } from '../entity/UserInfo';
 export default class UserService {
   /**
@@ -83,6 +83,34 @@ export default class UserService {
       ctx.success({}, 'update success!');
     } else {
       ctx.fail('update user failed！', -1);
+    }
+  };
+  /**
+   * Update user password.
+   * First check old password , if correct will be change password.
+   */
+  updatePassword = async (ctx: Koa.Context) => {
+    const id = ctx.params.id;
+    const { oldPassword, newPassword } = ctx.request.body;
+    const userRepository = getManager().getRepository(UserInfo);
+    const [result, resultCount] = await userRepository.find({
+      id: id,
+      password: oldPassword
+    });
+    if (result) {
+      const newUserInfo = {
+        ...result,
+        password: newPassword,
+        updateTime: moment().format('YYYY-MM-DD HH:mm')
+      };
+      const updateResult = await userRepository.save(newUserInfo);
+      if (updateResult) {
+        ctx.success({}, 'update password success!');
+      } else {
+        ctx.fail('update password failed！', -1);
+      }
+    } else {
+      ctx.fail('old password check failed！', -1);
     }
   };
 }
