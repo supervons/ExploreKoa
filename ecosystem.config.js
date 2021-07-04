@@ -11,8 +11,9 @@ module.exports = {
       watch: true,
       env_production: {
         NODE_ENV: 'production',
-        PORT: 8080
-      }
+        PORT: 8088
+      },
+      ignore_watch: ['node_modules', 'files', 'public']
     }
   ]
 };
