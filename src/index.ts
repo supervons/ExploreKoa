@@ -27,7 +27,7 @@ UserRoutes.forEach(route => router[route.method](route.path, route.action));
 // needs JWT-TOKEN & file routes
 FileRoutes.forEach(route => fileRouter[route.method](route.path, route.action));
 // open public file dir
-app.use(staticFiles(path.join(__dirname, '../public/upload/')));
+app.use(staticFiles(path.join(FILE_UPLOAD_PATH)));
 app.use(routerResponse());
 app.use(koaBody());
 app.use(UnprotectRouter.routes());
