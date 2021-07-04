@@ -11,7 +11,7 @@ export class ProfileInfo extends BaseEntity {
   userId: string;
 
   @Column({ name: 'avatar_id' })
-  avatarId: number;
+  avatarId: string;
 
   @Column({ name: 'theme' })
   theme: string;
