@@ -2,6 +2,9 @@ import redisConnect from './redisConnection';
 import * as ioredis from 'ioredis';
 import { PORT_REDIS, HOST_REDIS, PASSWORD_REDIS } from '../config';
 
+/**
+ * Redis operation tool.
+ */
 export interface redisTool {
   setString(key: string, value: any): Promise<string | void>;
   getString(key: any): Promise<string>;

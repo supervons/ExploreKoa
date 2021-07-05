@@ -1,5 +1,7 @@
 import * as ioredis from 'ioredis';
-
+/**
+ * Redis config file.
+ */
 interface redisConfig {
   port: number;
   host: string;
