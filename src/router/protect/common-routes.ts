@@ -1,5 +1,6 @@
 /**
- * 受保护路由，需携带token访问
+ * This file about common operation api.
+ * Protected routes that need to carry tokens for access
  */
 import commonController from '../../controller/common-controller';
 

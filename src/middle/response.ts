@@ -1,5 +1,5 @@
 /**
- * Unified return middleware
+ * Unified request results middleware
  * @param option Contains type, success failure/return code, return information
  * @returns
  */

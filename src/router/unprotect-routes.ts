@@ -1,5 +1,5 @@
 /**
- * 无需token访问路由
+ * This api without token can be access.
  */
 import authController from '../controller/auth-controller';
 
