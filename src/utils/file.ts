@@ -16,14 +16,14 @@ export async function upload(files, origin) {
       fileList.push({
         ...res,
         fileSize: res.size,
-        fileAccessPath: `${origin}/${res.name}`
+        fileAccessPath: `${origin}/${res.fileName}`
       });
     });
   } else {
     fileList.push({
       ...files.files,
       fileSize: files.files.size,
-      fileAccessPath: `${origin}/${files.files.name}`
+      fileAccessPath: `${origin}/${files.files.fileName}`
     });
   }
   const fileRepository = getManager().getRepository(FileInfo);
