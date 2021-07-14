@@ -44,7 +44,7 @@ export default class CommonService {
             'avatar.id = ProfileInfo.avatar_id'
           )
           .leftJoinAndSelect(FileInfo, 'file', 'file.id = avatar.file_id')
-          .where(userId ? `ProfileInfo.user_id = ${userId}` : ``)
+          .where(userId ? `ProfileInfo.user_id = '${userId}'` : ``)
           .select(
             `ProfileInfo.id, ProfileInfo.user_id,ProfileInfo.theme,ProfileInfo.motto, file.file_access_path`
           )
