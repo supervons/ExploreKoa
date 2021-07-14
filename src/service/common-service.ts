@@ -34,6 +34,7 @@ export default class CommonService {
    * You should use select() Choose the data you need.
    */
   getProfile = async (ctx: Koa.Context) => {
+    const userId = ctx.params.userId;
     ctx.success(
       {
         profile: await createQueryBuilder('ProfileInfo')
@@ -43,12 +44,13 @@ export default class CommonService {
             'avatar.id = ProfileInfo.avatar_id'
           )
           .leftJoinAndSelect(FileInfo, 'file', 'file.id = avatar.file_id')
+          .where(userId ? `ProfileInfo.user_id = ${userId}` : ``)
           .select(
             `ProfileInfo.id, ProfileInfo.user_id,ProfileInfo.theme,ProfileInfo.motto, file.file_access_path`
           )
           .getRawMany()
       },
-      'upload profile success!'
+      'get profile success!'
     );
   };
 
