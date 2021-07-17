@@ -55,25 +55,27 @@ export default class CommonService {
   };
 
   /**
-   * Add profile.
+   * Add or update profile.
+   * If no files, will update base info.
+   * If params have id, denote update profile.Otherwise, add new profile.
    */
   saveAndFlushProfile = async (ctx: Koa.Context) => {
     // Get params
     const { id, userId, theme, motto } = ctx.request.body;
-    const identifiers = await Upload.uploadAvatar(ctx);
-    // Add profile
-    const profileRepository = getManager().getRepository(ProfileInfo);
-    const profile = {
+    const files = ctx.request.files;
+    const profile: any = {
       userId: userId,
-      avatarId: identifiers[0].id,
       theme: theme,
       motto: motto,
       createTime: moment().format('YYYY-MM-DD HH:mm')
     };
+    if (JSON.stringify(files) !== '{}') {
+      const identifiers = await Upload.uploadAvatar(ctx);
+      profile.avatarId = identifiers[0].id;
+    }
+    const profileRepository = getManager().getRepository(ProfileInfo);
     let result = null;
-    // If params have id, denote update profile.
     result = await profileRepository.save({ ...profile, id });
-    // Add or update success
     if (result.id) {
       ctx.success(null, 'upload profile success!');
     } else {
