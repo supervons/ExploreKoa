@@ -1,10 +1,9 @@
 import moment = require('moment');
 import * as Koa from 'koa';
-import { getManager, createQueryBuilder } from 'typeorm';
+import { getManager } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
-import { AvatarInfo } from '../entity/AvatarInfo';
-import { FileInfo } from '../entity/FileInfo';
 import * as Upload from '../utils/file';
+import queryProfile from '../utils/user';
 /**
  * CommonService, includes user profile, file upload.
  */
@@ -37,18 +36,7 @@ export default class CommonService {
     const userId = ctx.params.userId;
     ctx.success(
       {
-        profile: await createQueryBuilder('ProfileInfo')
-          .leftJoinAndSelect(
-            AvatarInfo,
-            'avatar',
-            'avatar.id = ProfileInfo.avatar_id'
-          )
-          .leftJoinAndSelect(FileInfo, 'file', 'file.id = avatar.file_id')
-          .where(userId ? `ProfileInfo.user_id = '${userId}'` : ``)
-          .select(
-            `ProfileInfo.id, ProfileInfo.user_id,ProfileInfo.theme,ProfileInfo.motto, file.file_access_path`
-          )
-          .getRawMany()
+        profile: await queryProfile(userId)
       },
       'get profile success!'
     );
@@ -58,6 +46,7 @@ export default class CommonService {
    * Add or update profile.
    * If no files, will update base info.
    * If params have id, denote update profile.Otherwise, add new profile.
+   * @Return The new profileInfo.
    */
   saveAndFlushProfile = async (ctx: Koa.Context) => {
     // Get params
@@ -77,7 +66,8 @@ export default class CommonService {
     let result = null;
     result = await profileRepository.save({ ...profile, id });
     if (result.id) {
-      ctx.success(null, 'upload profile success!');
+      const profileInfo = await queryProfile(userId);
+      ctx.success({ profileInfo: profileInfo[0] }, 'upload profile success!');
     } else {
       ctx.fail('upload profile failed！', -1);
     }
