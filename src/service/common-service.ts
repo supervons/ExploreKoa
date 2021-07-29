@@ -1,12 +1,12 @@
+/**
+ * CommonService, includes user profile, file upload.
+ */
 import moment = require('moment');
 import * as Koa from 'koa';
 import { getManager } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
 import * as Upload from '../utils/file';
 import queryProfile from '../utils/user';
-/**
- * CommonService, includes user profile, file upload.
- */
 export default class CommonService {
   hello = () => {
     return new Promise(resolve => resolve('hello world'));

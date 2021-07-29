@@ -1,5 +1,5 @@
 /**
- * controller implementation class
+ * UserService, operation UserInfo.
  */
 import * as Koa from 'koa';
 import * as moment from 'moment';
