@@ -65,5 +65,6 @@ npm run pro
 
 ### 待开发
 
+- [ ] WebSocket 接口编写
 - [ ] log4j 日志中间件
 - [ ] 基于 redis 列表查询加速

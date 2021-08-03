@@ -59,11 +59,12 @@ npm run pro
 
 - [x] Project Init
 - [x] Login and Register
-- [x] api add authentication - JWT
-- [x] update password and user information
+- [x] Api add authentication - JWT
+- [x] Update password and user information
 - [x] CURD function for profile information such as avatar, theme and motto.
 
 ### TODO-LIST
 
-- [ ] log4j log middleware
+- [ ] WebSocket API Demo
+- [ ] Log4j log middleware
 - [ ] Redis-based list query acceleration
