@@ -62,9 +62,9 @@ npm run pro
 - [x] 接口鉴权 - JWT
 - [x] 修改密码、用户信息
 - [x] 头像、皮肤、签名等 profile 相关信息 CURD 接口
+- [x] WebSocket 接口编写
 
 ### 待开发
 
-- [ ] WebSocket 接口编写
 - [ ] log4j 日志中间件
 - [ ] 基于 redis 列表查询加速
