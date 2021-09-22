@@ -66,5 +66,6 @@ npm run pro
 
 ### TODO-LIST
 
+- [ ] Send email
 - [ ] Log4j log middleware
 - [ ] Redis-based list query acceleration
