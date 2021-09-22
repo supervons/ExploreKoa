@@ -11,5 +11,4 @@
     "baseUrl": "./"
   },
   "exclude": ["node_modules"]
-  // "include": ["ormconfig.json"]
 }
