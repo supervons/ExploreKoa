@@ -3,6 +3,8 @@ import * as Koa from 'koa';
 import { getManager } from 'typeorm';
 import { UserInfo } from '../entity/UserInfo';
 import { JWT_SECRET } from '../constants';
+import { sendRegisterMail } from '../utils/email';
+import { getRandomString } from 'src/utils/common';
 export default class AuthService {
   /**
    * Search the database based on the user name and password
@@ -25,6 +27,22 @@ export default class AuthService {
       ctx.success(result, 'success');
     } else {
       ctx.fail('Incorrect user name or password！', -1);
+    }
+  };
+
+  /**
+   * When user register or other need to authorization operation,must verify the email code.
+   * Other operation : change password, find password.
+   */
+  getEmailCode = async (ctx: Koa.Context) => {
+    const emailInfo = ctx.request.body;
+    const { uId, email } = emailInfo;
+    const code = getRandomString(6);
+    const result = await sendRegisterMail(email, code);
+    if (result) {
+      ctx.success(null, 'Send code to email success!');
+    } else {
+      ctx.fail('Send code faild！', -1);
     }
   };
 }

@@ -11,6 +11,11 @@ export default [
     action: authController.auth
   },
   {
+    path: '/api/v1/email',
+    method: 'post',
+    action: authController.getEmailCode
+  },
+  {
     path: '/api/v1/profile/:userId',
     method: 'get',
     action: commonController.getProfile
