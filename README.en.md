@@ -4,11 +4,20 @@
 
 The front-end project address: https://github.com/supervons/ExploreRN
 
-1. Login registration;
-2. Interface authentication;
-3. Redis-based list query acceleration;
-4. Modify password and user information;
-5. Upload and modify the avatar;
+### Finished
+
+- [x] Project Init
+- [x] Login and Register
+- [x] Api add authentication - JWT
+- [x] Update password and user information
+- [x] CURD function for profile information such as avatar, theme and motto
+- [x] WebSocket API Demo
+
+### TODO-LIST
+
+- [ ] Send email
+- [ ] Log4j log middleware
+- [ ] Redis-based list query acceleration
 
 ### Project Start - Develop
 
@@ -54,18 +63,3 @@ npm run pro
 ```
 ./public/mysql.sql
 ```
-
-### Finished
-
-- [x] Project Init
-- [x] Login and Register
-- [x] Api add authentication - JWT
-- [x] Update password and user information
-- [x] CURD function for profile information such as avatar, theme and motto
-- [x] WebSocket API Demo
-
-### TODO-LIST
-
-- [ ] Send email
-- [ ] Log4j log middleware
-- [ ] Redis-based list query acceleration
