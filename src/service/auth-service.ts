@@ -1,7 +1,9 @@
 import * as JWT from 'jsonwebtoken';
 import * as Koa from 'koa';
+import * as moment from 'moment';
 import { getManager } from 'typeorm';
 import { UserInfo } from '../entity/UserInfo';
+import { VerifyInfo } from '../entity/VerifyInfo';
 import { JWT_SECRET } from '../constants';
 import { sendRegisterMail } from '../utils/email';
 import { getRandomString } from 'src/utils/common';
@@ -38,8 +40,24 @@ export default class AuthService {
     const emailInfo = ctx.request.body;
     const { uId, email } = emailInfo;
     const code = getRandomString(6);
+    const expirationTime = moment(moment().valueOf() + 1000 * 300).valueOf(); // expiration time 5 minutes.
+    const verifyRepository = getManager().getRepository(VerifyInfo);
     const result = await sendRegisterMail(email, code);
-    if (result) {
+    let sended = 0;
+    if (result.accepted.length !== 0) {
+      sended = 1;
+    }
+    // Insert emailcode to database.
+    const verifyResult = await verifyRepository.insert({
+      uId,
+      type: 'register',
+      code,
+      email,
+      expirationTime,
+      createTime: moment().format('YYYY-MM-DD HH:mm'),
+      sended
+    });
+    if (verifyResult) {
       ctx.success(null, 'Send code to email success!');
     } else {
       ctx.fail('Send code faild！', -1);
