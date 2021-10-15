@@ -24,6 +24,9 @@ export class UserInfo extends BaseEntity {
   @Column({ name: 'user_type' })
   userType: string;
 
+  @Column({ name: 'user_email' })
+  userEmail: string;
+
   @Column({ name: 'user_address' })
   userAddress: string;
 

@@ -30,6 +30,7 @@ CREATE TABLE `tb_user_info` (
   `user_age` int(11),
   `user_sex` varchar(16),
   `user_type` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
   `user_address` varchar(255),
   `user_cellphone` varchar(32),
   `create_time` varchar(32),
@@ -97,6 +98,22 @@ CREATE TABLE `tb_news_info` (
   `id` varchar(32) PRIMARY KEY,
   `news_title` varchar(64) NOT NULL,
   `news_content` blob,
+  `create_user_id` varchar(32),
+  `create_time` varchar(32),
+  `update_time` varchar(32)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tb_verify_info`;
+
+CREATE TABLE `tb_verify_info` (
+  `id` varchar(32) PRIMARY KEY,
+  `uid` varchar(32) NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `code` varchar(16) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `expiration_time` bigint NOT NULL,
+  `usable` int NOT NULL default 0 comment "usable 1-y，0-n",
+  `sended` int NOT NULL default 0 comment "send success? 1-y，0-n",
   `create_user_id` varchar(32),
   `create_time` varchar(32),
   `update_time` varchar(32)
