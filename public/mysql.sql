@@ -23,7 +23,7 @@
 DROP TABLE IF EXISTS `tb_user_info`;
 
 CREATE TABLE `tb_user_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `uid` varchar(64),
   `user_name` varchar(255),
   `pass_word` varchar(255) NOT NULL,
@@ -59,7 +59,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_file_info`;
 
 CREATE TABLE `tb_file_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `file_name` varchar(255),
   `file_size` varchar(32) NOT NULL,
   `file_type` varchar(32),
@@ -72,7 +72,7 @@ CREATE TABLE `tb_file_info` (
 DROP TABLE IF EXISTS `tb_avatar_info`;
 
 CREATE TABLE `tb_avatar_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `user_id` varchar(32) NOT NULL,
   `file_id` varchar(32) NOT NULL,
   `status` varchar(4),
@@ -83,7 +83,7 @@ CREATE TABLE `tb_avatar_info` (
 DROP TABLE IF EXISTS `tb_profile_info`;
 
 CREATE TABLE `tb_profile_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `user_id` varchar(32) NOT NULL,
   `avatar_id` varchar(32),
   `theme` varchar(16),
@@ -95,7 +95,7 @@ CREATE TABLE `tb_profile_info` (
 DROP TABLE IF EXISTS `tb_news_info`;
 
 CREATE TABLE `tb_news_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `news_title` varchar(64) NOT NULL,
   `news_content` blob,
   `create_user_id` varchar(32),
@@ -106,7 +106,7 @@ CREATE TABLE `tb_news_info` (
 DROP TABLE IF EXISTS `tb_verify_info`;
 
 CREATE TABLE `tb_verify_info` (
-  `id` varchar(32) PRIMARY KEY,
+  `id` varchar(36) PRIMARY KEY,
   `uid` varchar(32) NOT NULL,
   `type` varchar(32) NOT NULL,
   `code` varchar(16) NOT NULL,
