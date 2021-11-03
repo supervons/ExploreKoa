@@ -103,4 +103,20 @@ export default class AuthService {
       ctx.fail('Incorrect code!', -1);
     }
   };
+
+  /**
+   * Search the database based on the user name.
+   */
+  getUid = async (ctx: Koa.Context) => {
+    const uId = ctx.params.userId;
+    const userRepository = getManager().getRepository(UserInfo);
+    const users = await userRepository.findOne({
+      uId: uId
+    });
+    if (!users) {
+      ctx.success('User name can use!', 'success');
+    } else {
+      ctx.fail('User name exist！', -1);
+    }
+  };
 }

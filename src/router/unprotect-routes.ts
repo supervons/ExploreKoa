@@ -24,5 +24,10 @@ export default [
     path: '/api/v1/profile/:userId',
     method: 'get',
     action: commonController.getProfile
+  },
+  {
+    path: '/api/v1/uid/:userId',
+    method: 'get',
+    action: authController.getUid
   }
 ];

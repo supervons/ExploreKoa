@@ -18,6 +18,10 @@ class AuthController {
   createUser = async (ctx: Koa.Context) => {
     await this.service.createUser(ctx);
   };
+
+  getUid = async (ctx: Koa.Context) => {
+    await this.service.getUid(ctx);
+  };
 }
 
 export default new AuthController();
