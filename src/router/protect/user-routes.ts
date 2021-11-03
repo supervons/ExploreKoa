@@ -21,11 +21,6 @@ export default [
     action: userController.getUser
   },
   {
-    path: '/api/v1/user',
-    method: 'post',
-    action: userController.createUser
-  },
-  {
     path: '/api/v1/user/:id',
     method: 'delete',
     action: userController.deleteUser

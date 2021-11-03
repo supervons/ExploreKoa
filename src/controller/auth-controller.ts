@@ -14,6 +14,10 @@ class AuthController {
   getEmailCode = async (ctx: Koa.Context) => {
     await this.service.getEmailCode(ctx);
   };
+
+  createUser = async (ctx: Koa.Context) => {
+    await this.service.createUser(ctx);
+  };
 }
 
 export default new AuthController();

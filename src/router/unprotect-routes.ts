@@ -16,6 +16,11 @@ export default [
     action: authController.getEmailCode
   },
   {
+    path: '/api/v1/user',
+    method: 'post',
+    action: authController.createUser
+  },
+  {
     path: '/api/v1/profile/:userId',
     method: 'get',
     action: commonController.getProfile

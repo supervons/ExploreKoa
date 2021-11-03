@@ -63,4 +63,44 @@ export default class AuthService {
       ctx.fail('Send code faild！', -1);
     }
   };
+
+  /**
+   * User register.
+   * Verify that the user name matches the verification code and that the verification code has expired.
+   */
+  createUser = async (ctx: Koa.Context) => {
+    const userInfo = ctx.request.body;
+    const userRepository = getManager().getRepository(UserInfo);
+    const verifyRepository = getManager().getRepository(VerifyInfo);
+    const verifyResult = await verifyRepository.findOne({
+      uId: userInfo.uId,
+      code: userInfo.code,
+      email: userInfo.userEmail
+    });
+    // Check usable and sended status.
+    if (verifyResult?.usable === 0 && verifyResult.sended === 1) {
+      const currentTime = moment(moment().valueOf()).valueOf();
+      if (currentTime < verifyResult.expirationTime) {
+        const result = await userRepository.insert({
+          ...userInfo,
+          userType: '1',
+          createTime: moment().format('YYYY-MM-DD HH:mm')
+        });
+        // Create user success.
+        if (result) {
+          verifyRepository.save({
+            id: verifyResult.id,
+            usable: 1 // Set usable to 1.
+          });
+          ctx.success({ ...result }, 'Register success!');
+        } else {
+          ctx.fail('Register failed!', -1);
+        }
+      } else {
+        ctx.fail('Incorrect code!', -1);
+      }
+    } else {
+      ctx.fail('Incorrect code!', -1);
+    }
+  };
 }
