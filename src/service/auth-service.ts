@@ -6,7 +6,7 @@ import { UserInfo } from '../entity/UserInfo';
 import { VerifyInfo } from '../entity/VerifyInfo';
 import { JWT_SECRET } from '../constants';
 import { sendRegisterMail } from '../utils/email';
-import { getRandomString } from 'src/utils/common';
+import { getRandomString } from '../utils/common';
 export default class AuthService {
   /**
    * Search the database based on the user name and password
