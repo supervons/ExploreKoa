@@ -73,8 +73,8 @@ DROP TABLE IF EXISTS `tb_avatar_info`;
 
 CREATE TABLE `tb_avatar_info` (
   `id` varchar(36) PRIMARY KEY,
-  `user_id` varchar(32) NOT NULL,
-  `file_id` varchar(32) NOT NULL,
+  `user_id` varchar(36) NOT NULL,
+  `file_id` varchar(36) NOT NULL,
   `status` varchar(4),
   `create_time` varchar(32),
   `update_time` varchar(32)
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `tb_profile_info`;
 CREATE TABLE `tb_profile_info` (
   `id` varchar(36) PRIMARY KEY,
   `user_id` varchar(32) NOT NULL,
-  `avatar_id` varchar(32),
+  `avatar_id` varchar(36),
   `theme` varchar(16),
   `motto` varchar(255),
   `create_time` varchar(32),
@@ -98,7 +98,7 @@ CREATE TABLE `tb_news_info` (
   `id` varchar(36) PRIMARY KEY,
   `news_title` varchar(64) NOT NULL,
   `news_content` blob,
-  `create_user_id` varchar(32),
+  `create_user_id` varchar(36),
   `create_time` varchar(32),
   `update_time` varchar(32)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
