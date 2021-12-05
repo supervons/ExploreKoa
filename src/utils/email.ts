@@ -45,7 +45,7 @@ export async function sendRegisterMail(registerEmail: string, code: string) {
                     <p style="color:#313131;line-height:24px;font-size:14px;margin:20px 0;">Your code is：</p>
                     <p style="font-weight: bold; color:#f08834; font-size: 24px">${code}</p>
                     <p style="color:#313131;line-height:24px;font-size:14px;margin:20px 0;">Valid for five minutes.</p>
-                    <p style="color:#313131;line-height:28px;font-size:14px;margin:20px 0;">If you don’t know what happen, , please ignore this message.</p>
+                    <p style="color:#313131;line-height:28px;font-size:14px;margin:20px 0;">If you don’t know what happen, please ignore this message.</p>
                     <p style="color:#999; margin:26px 0 0 0; font-size:12px;">
                         RN-Home-Page：<a href="https://github.com/supervons/ExploreRN" target="_blank" style="color:#999;">https://github.com/supervons/ExploreRN</a><br>
                         KOA-Home-Page：<a href="https://github.com/supervons/ExploreKoa" target="_blank" style="color:#999;">https://github.com/supervons/ExploreKoa</a><br>
