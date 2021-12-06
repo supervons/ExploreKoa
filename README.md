@@ -58,6 +58,44 @@ npm run pro
 
 <img src="./public/explore.png" alt="表结构" align="center"/>
 
+
+
+## 运行前准备
+
+- `MySQL`
+- `Redis`
+
+建议使用 `Docker` 进行安装，方便快捷
+
+## 启动前配置项
+
+### `Redis` 配置
+
+`.env` 中进行配置
+
+- `PORT_REDIS` Redis 端口
+- `HOST_REDIS` Redis HOST
+- `PASSWORD_REDIS` Redis password
+
+### MySQL 数据库配置
+
+`ormconfig.ts`中进行配置：
+
+- `type` 数据库类型
+- `host`主机名
+
+具体参考 https://github.com/typeorm/typeorm
+
+### 邮件服务配置
+
+`src/utils/email.ts` 中进行配置
+
+- `host` 主机名
+- `port` 端口
+- `auth`  认证信息
+  - `user` 邮件用户，将会以此进行发送
+  - `pass` 通行证，一般在邮件供应商设置中获取
+
 ### 数据库文件位置
 
 ```
