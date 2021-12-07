@@ -19,8 +19,8 @@ class AuthController {
     await this.service.createUser(ctx);
   };
 
-  getUid = async (ctx: Koa.Context) => {
-    await this.service.getUid(ctx);
+  getUniqueTicket = async (ctx: Koa.Context) => {
+    await this.service.getUniqueTicket(ctx);
   };
 }
 

@@ -105,18 +105,19 @@ export default class AuthService {
   };
 
   /**
-   * Search the database based on the user name.
+   * Search the database by uId or Email.
    */
-  getUid = async (ctx: Koa.Context) => {
-    const uId = ctx.params.userId;
+  getUniqueTicket = async (ctx: Koa.Context) => {
+    const uId = ctx.params.uId;
+    const userEmail = ctx.params.userEmail;
     const userRepository = getManager().getRepository(UserInfo);
-    const users = await userRepository.findOne({
-      uId: uId
+    const users = await userRepository.find({
+      where: [{ uId: uId }, { userEmail: userEmail }]
     });
-    if (!users) {
-      ctx.success('User name can use!', 'success');
+    if (!users.length) {
+      ctx.success(`You can use ${uId || userEmail}!`, 'success');
     } else {
-      ctx.fail('User name exist！', -1);
+      ctx.fail(`${uId || userEmail} exist！`, -1);
     }
   };
 }

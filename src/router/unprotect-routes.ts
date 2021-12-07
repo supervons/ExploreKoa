@@ -26,8 +26,8 @@ export default [
     action: commonController.getProfile
   },
   {
-    path: '/api/v1/uid/:userId',
+    path: '/api/v1/unique/:uId/:userEmail',
     method: 'get',
-    action: authController.getUid
+    action: authController.getUniqueTicket
   }
 ];
