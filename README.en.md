@@ -82,17 +82,17 @@ Recommended `Docker`.
 - `type` DB type
 - `host` DB host
 
-具体参考 https://github.com/typeorm/typeorm
+Read more: https://github.com/typeorm/typeorm
 
 ### Email
 
-`src/utils/email.ts` 
+`src/utils/email.ts`
 
 - `host` Your email provider host.
 - `port`Your email provider part.
-- `auth`  
+- `auth`
   - `user` Email account, sender by it.
-  - `pass`  Pass token, check your email provider setting.
+  - `pass` Pass token, check your email provider setting.
 
 ### Database file path
 
