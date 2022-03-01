@@ -38,9 +38,8 @@ export async function upload(files, origin) {
  */
 export async function uploadAvatar(ctx: Koa.Context) {
   // get params
-  const files = ctx.request.files;
+  const { files, origin } = ctx.request.files;
   const { userId } = ctx.request.body;
-  const origin = ctx.request.origin;
   const fileIds = await this.upload(files, origin);
   // add avatar
   const avatarRepository = getManager().getRepository(AvatarInfo);
