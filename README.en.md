@@ -12,10 +12,10 @@ The front-end project address: https://github.com/supervons/ExploreRN
 - [x] Update password and user information
 - [x] CURD function for profile information such as avatar, theme and motto
 - [x] WebSocket API Demo
+- [x] Send email
 
 ### TODO-LIST
 
-- [ ] Send email
 - [ ] Log4j log middleware
 - [ ] Redis-based list query acceleration
 
