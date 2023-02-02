@@ -33,7 +33,7 @@ export default class CommonService {
    * You should use select() Choose the data you need.
    */
   getProfile = async (ctx: Koa.Context) => {
-    const userId = ctx.params.userId;
+    const { userId } = ctx.params;
     ctx.success(
       {
         profile: await queryProfile(userId)

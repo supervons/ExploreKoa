@@ -13,14 +13,9 @@ export default class AuthService {
    * Return the user information and JWT Token token if matched
    */
   auth = async (ctx: Koa.Context) => {
-    const userInfo = ctx.request.body;
-    const uId = userInfo.uId;
-    const password = userInfo.password;
+    const { uId, password } = ctx.request.body;
     const userRepository = getManager().getRepository(UserInfo);
-    const users = await userRepository.findOne({
-      uId: uId,
-      password: password
-    });
+    const users = await userRepository.findOne({ uId, password });
     if (users) {
       const result = {
         userInfo: users,
