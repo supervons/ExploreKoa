@@ -6,17 +6,21 @@ import * as staticFiles from 'koa-static';
 import * as path from 'path';
 import * as websocket from 'koa-websocket';
 import 'reflect-metadata';
+// import router
 import UnprotectRoutes from './router/unprotect-routes';
 import UserRoutes from './router/protect/user-routes';
 import WebSocketRoutes from './router/protect/web-socket-routes';
 import FileRoutes from './router/protect/common-routes';
+// import middleware
 import routerResponse from './middle/response';
+// import env values.
 import { PORT, FILE_UPLOAD_PATH } from './config';
 import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
 import moment = require('moment');
 createConnection();
 const app = websocket(new Koa());
+// create router
 const router = new Router();
 const fileRouter = new Router();
 const WebSocketRouter = new Router();
