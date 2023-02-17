@@ -1,8 +1,8 @@
 import moment = require('moment');
 import * as Koa from 'koa';
 import { getManager } from 'typeorm';
-import { FileInfo } from '../entity/FileInfo';
 import { AvatarInfo } from '../entity/AvatarInfo';
+import { FileInfo } from '../entity/FileInfo';
 /**
  * @description File upload tool, Support for multiple file uploads.
  * @param files, obejct or file list.
@@ -11,7 +11,7 @@ import { AvatarInfo } from '../entity/AvatarInfo';
 export async function upload(files, origin) {
   let fileList = [];
   // if there are multiple files
-  if (files.files.length) {
+  if (files?.files.length) {
     files.files.map(res => {
       fileList.push({
         ...res,
@@ -20,6 +20,9 @@ export async function upload(files, origin) {
       });
     });
   } else {
+    if(!files){
+      return false
+    }
     fileList.push({
       ...files.files,
       fileSize: files.files.size,
