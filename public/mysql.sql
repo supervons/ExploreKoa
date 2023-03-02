@@ -16,6 +16,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE DATABASE explore;
+
+USE explore;
 
 # Dump of table tb_user_info
 # ------------------------------------------------------------
@@ -76,7 +79,7 @@ CREATE TABLE `tb_avatar_info` (
   `user_id` varchar(36) NOT NULL,
   `file_id` varchar(36) NOT NULL,
   `status` varchar(4),
-  `create_time` varchar(32),
+  `create_time` datetime NOT NULL DEFAULT NOW(),
   `update_time` varchar(32)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

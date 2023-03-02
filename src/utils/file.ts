@@ -20,7 +20,7 @@ export async function upload(files, origin) {
       });
     });
   } else {
-    if(!files){
+    if (!files) {
       return false
     }
     fileList.push({
@@ -50,7 +50,6 @@ export async function uploadAvatar(ctx: Koa.Context) {
     userId: userId,
     fileId: fileIds[0].id,
     status: 1,
-    createTime: moment().format('YYYY-MM-DD HH:mm')
   };
   const { identifiers } = await avatarRepository.insert(avatar);
   return identifiers;
