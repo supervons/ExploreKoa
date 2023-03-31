@@ -18,5 +18,12 @@ export default class WebSocketService {
         users[uid].websocket.send(JSON.parse(message).content);
       }
     });
+    // Listen the client close.
+    ctx.websocket.on('close', function (message) {
+      // If user send close, remove from user list.
+      if (users[id]) {
+        users[id] = null;
+      }
+    });
   };
 }
