@@ -1,5 +1,5 @@
-import WebSocketService from '../service/web-socket-service';
 import * as Koa from 'koa';
+import WebSocketService from '../service/web-socket-service';
 /**
  * WebSocket Controller.
  * For client/server both-way communication.

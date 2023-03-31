@@ -1,22 +1,22 @@
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
 import * as koaBody from 'koa-body';
 import * as jwt from 'koa-jwt';
+import * as Router from 'koa-router';
 import * as staticFiles from 'koa-static';
-import * as path from 'path';
 import * as websocket from 'koa-websocket';
+import * as path from 'path';
 import 'reflect-metadata';
 // import router
-import UnprotectRoutes from './router/unprotect-routes';
+import FileRoutes from './router/protect/common-routes';
 import UserRoutes from './router/protect/user-routes';
 import WebSocketRoutes from './router/protect/web-socket-routes';
-import FileRoutes from './router/protect/common-routes';
+import UnprotectRoutes from './router/unprotect-routes';
 // import middleware
 import routerResponse from './middle/response';
 // import env values.
-import { PORT, FILE_UPLOAD_PATH } from './config';
-import { JWT_SECRET } from './constants';
 import { createConnection } from 'typeorm';
+import { FILE_UPLOAD_PATH, PORT } from './config';
+import { JWT_SECRET } from './constants';
 import moment = require('moment');
 createConnection();
 const app = websocket(new Koa());

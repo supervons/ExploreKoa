@@ -1,5 +1,5 @@
-import AuthService from '../service/auth-service';
 import * as Koa from 'koa';
+import AuthService from '../service/auth-service';
 /**
  * Auth controller.
  * This api used for get JWT auth token.
