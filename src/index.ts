@@ -24,9 +24,12 @@ const app = websocket(new Koa());
 const Axe = require('axe');
 const Cabin = require('cabin');
 const { Signale } = require('signale');
+// import current env
+const env = process.env.NODE_ENV;
 // initialize a new instance of Axe
 const logger = new Axe({
-  logger: new Signale()
+  logger: new Signale(),
+  level: env === 'development' ? 'info' : 'error'
 });
 const cabin = new Cabin({ logger });
 // create router

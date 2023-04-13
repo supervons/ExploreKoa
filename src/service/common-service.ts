@@ -34,6 +34,7 @@ export default class CommonService {
    */
   getProfile = async (ctx: Koa.Context) => {
     const { userId } = ctx.params;
+    ctx.logger.info('Call profile...');
     ctx.success(
       {
         profile: await queryProfile(userId)
