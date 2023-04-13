@@ -13,11 +13,11 @@ The front-end project address: https://github.com/supervons/ExploreRN
 - [x] CURD function for profile information such as avatar, theme and motto
 - [x] WebSocket API Demo
 - [x] Send email
+- [x] cabin + axe + signale log middleware
 
 ### TODO-LIST
 
 - [ ] SQL optimize
-- [ ] Log4j log middleware
 - [ ] Redis-based list query acceleration
 
 ### Project Start - Develop

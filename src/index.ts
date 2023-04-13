@@ -20,6 +20,15 @@ import { JWT_SECRET } from './constants';
 import moment = require('moment');
 createConnection();
 const app = websocket(new Koa());
+// log
+const Axe = require('axe');
+const Cabin = require('cabin');
+const { Signale } = require('signale');
+// initialize a new instance of Axe
+const logger = new Axe({
+  logger: new Signale()
+});
+const cabin = new Cabin({ logger });
 // create router
 const router = new Router();
 const fileRouter = new Router();
@@ -37,6 +46,8 @@ WebSocketRoutes.forEach(route =>
 );
 // needs JWT-TOKEN & file routes
 FileRoutes.forEach(route => fileRouter[route.method](route.path, route.action));
+// use log
+app.use(cabin.middleware);
 // open public file dir
 app.use(staticFiles(path.join(FILE_UPLOAD_PATH)));
 app.use(routerResponse());

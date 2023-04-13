@@ -13,11 +13,11 @@
 - [x] 头像、皮肤、签名等 profile 相关信息 CURD 接口
 - [x] WebSocket 接口编写
 - [x] 发送邮件
+- [x] cabin + axe + signale 日志中间件
 
 ### 待开发
 
 - [ ] SQL 优化
-- [ ] log4j 日志中间件
 - [ ] 基于 redis 列表查询加速
 
 ### 项目启动-开发
