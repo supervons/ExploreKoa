@@ -10,7 +10,7 @@ export default class WebSocketService {
     users[id] = ctx;
     ctx.websocket.send('Connection success!');
     // Listen the client message.
-    ctx.websocket.on('message', function (message) {
+    ctx.websocket.on('message', (message: string) => {
       const uid = JSON.parse(message).uId;
       if (!users[uid]) {
         ctx.websocket.send(`${uid} offline!`);
@@ -19,7 +19,7 @@ export default class WebSocketService {
       }
     });
     // Listen the client close.
-    ctx.websocket.on('close', function (message) {
+    ctx.websocket.on('close', () => {
       // If user send close, remove from user list.
       if (users[id]) {
         users[id] = null;
