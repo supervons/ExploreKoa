@@ -29,7 +29,7 @@ const env = process.env.NODE_ENV;
 // initialize a new instance of Axe
 const logger = new Axe({
   logger: new Signale(),
-  level: env === 'development' ? 'info' : 'error'
+  level: env === 'production' ? 'error' : 'info'
 });
 const cabin = new Cabin({ logger });
 // create router
