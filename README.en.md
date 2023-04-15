@@ -17,6 +17,7 @@ The front-end project address: https://github.com/supervons/ExploreRN
 
 ### TODO-LIST
 
+- [ ] Change `typeorm` to `prisma`
 - [ ] SQL optimize
 - [ ] Redis-based list query acceleration
 

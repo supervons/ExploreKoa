@@ -17,6 +17,7 @@
 
 ### 待开发
 
+- [ ] 从 `typeorm` 改为 `prisma`
 - [ ] SQL 优化
 - [ ] 基于 redis 列表查询加速
 
@@ -59,8 +60,6 @@ npm run pro
 
 <img src="./public/explore.png" alt="表结构" align="center"/>
 
-
-
 ## 运行前准备
 
 - `MySQL`
@@ -93,7 +92,7 @@ npm run pro
 
 - `host` 主机名
 - `port` 端口
-- `auth`  认证信息
+- `auth` 认证信息
   - `user` 邮件用户，将会以此进行发送
   - `pass` 通行证，一般在邮件供应商设置中获取
 
