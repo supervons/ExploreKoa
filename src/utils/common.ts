@@ -1,3 +1,4 @@
+import * as events from 'events';
 /**
  * Random string function.
  * Remove I,1,L;O0;
@@ -12,3 +13,6 @@ export function getRandomString(length: number) {
   }
   return code;
 }
+
+// Global event emitter.
+export const emitter = new events.EventEmitter();

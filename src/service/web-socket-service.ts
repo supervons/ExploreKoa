@@ -2,6 +2,7 @@
  * WebSocketService, operation UserInfo.
  */
 import * as Koa from 'koa';
+import { emitter } from '../utils/common';
 let users = {};
 export default class WebSocketService {
   getTest = async (ctx: Koa.Context) => {
@@ -18,6 +19,13 @@ export default class WebSocketService {
         users[uid].websocket.send(JSON.parse(message).content);
       }
     });
+    // Add global listener, support HTTP emit.
+    emitter.listenerCount('refreshCount') === 0 &&
+      emitter.on('refreshCount', function (arg1) {
+        for (let index in users) {
+          users[index]?.websocket.send(arg1);
+        }
+      });
     // Listen the client close.
     ctx.websocket.on('close', () => {
       // If user send close, remove from user list.
