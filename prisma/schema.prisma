@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+  id          BigInt  @id
+  description String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+}
+
+model tb_avatar_info {
+  id          String  @id @db.VarChar(36)
+  user_id     String  @db.VarChar(32)
+  file_id     String  @default("") @db.VarChar(36)
+  status      String? @db.VarChar(4)
+  create_time String? @db.VarChar(32)
+  update_time String? @db.VarChar(32)
+}
+
+model tb_file_info {
+  id               String  @id @db.VarChar(36)
+  file_name        String? @db.VarChar(255)
+  file_size        String  @db.VarChar(32)
+  file_type        String? @db.VarChar(32)
+  file_path        String  @db.VarChar(255)
+  file_access_path String? @db.VarChar(255)
+  create_time      String? @db.VarChar(32)
+  update_time      String? @db.VarChar(32)
+}
+
+model tb_news_info {
+  id             String  @id @db.VarChar(36)
+  news_title     String  @db.VarChar(64)
+  news_content   Bytes?  @db.Blob
+  create_user_id String? @db.VarChar(32)
+  create_time    String? @db.VarChar(32)
+  update_time    String? @db.VarChar(32)
+}
+
+model tb_profile_info {
+  id          String  @id @db.VarChar(36)
+  user_id     String  @db.VarChar(32)
+  avatar_id   String? @db.VarChar(36)
+  theme       String? @db.VarChar(16)
+  motto       String? @db.VarChar(255)
+  create_time String? @db.VarChar(32)
+  update_time String? @db.VarChar(32)
+}
+
+model tb_user_info {
+  id             String  @id @db.VarChar(36)
+  uid            String? @db.VarChar(64)
+  user_name      String? @db.VarChar(255)
+  pass_word      String  @db.VarChar(255)
+  user_age       Int?
+  user_sex       String? @db.VarChar(16)
+  user_type      String  @db.VarChar(255)
+  user_email     String  @db.VarChar(255)
+  user_address   String? @db.VarChar(255)
+  user_cellphone String? @db.VarChar(32)
+  create_time    String? @db.VarChar(32)
+  update_time    String? @db.VarChar(32)
+}
+
+model tb_verify_info {
+  id              String  @id @db.VarChar(36)
+  uid             String  @db.VarChar(32)
+  type            String  @db.VarChar(32)
+  code            String  @db.VarChar(16)
+  email           String  @db.VarChar(255)
+  expiration_time BigInt
+  usable          Int     @default(0)
+  sended          Int     @default(0)
+  create_user_id  String? @db.VarChar(32)
+  create_time     String? @db.VarChar(32)
+  update_time     String? @db.VarChar(32)
+}
