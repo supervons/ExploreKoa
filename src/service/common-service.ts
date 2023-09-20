@@ -2,13 +2,19 @@
  * CommonService, includes user profile, file upload.
  */
 import moment = require('moment');
+import { PrismaClient } from '@prisma/client';
 import * as Koa from 'koa';
 import { getManager } from 'typeorm';
 import { ProfileInfo } from '../entity/ProfileInfo';
 import * as Upload from '../utils/file';
 import queryProfile from '../utils/user';
+
+const prisma = new PrismaClient();
 export default class CommonService {
-  hello = () => {
+  hello = async () => {
+    // TODO prisma demo.
+    const allUsers = await prisma.tb_profile_info.findMany();
+    console.log(allUsers); //event.js 文件
     return new Promise(resolve => resolve('hello world'));
   };
 
